@@ -87,7 +87,13 @@ h2 {
     cursor: pointer;
 }
 
+.anotacao textarea {
+    padding-top: 5px;
+    height: 130px;
+}
+
 .visualizar-anotacao {
+    position: absolute;
     padding: 20px;
     width: 100%;
     height: 95vh;
@@ -97,12 +103,36 @@ h2 {
     transition: 0.5s;
 }
 
+.area-das-anotacoes input, textarea {
+    padding-left: 10px;
+    border: none;
+    background: #242236;
+    color: #fff;
+    width: 100%;
+    display: block;
+}
+
+.visualizar-anotacao textarea {
+    padding-top: 15px;
+    height: 450px;
+}
+.area-das-anotacoes input {
+    border-bottom: 0.5px solid #5c5796;
+    height: 10%;
+    font-size: 30px;
+}
+
+.anotacao input {
+    padding: 2px 0px 5px 2px;
+    line-height: 20%;
+    font-size: 1.2em;
+}
 /* botao adiciona nova anotacao */
 
 .botao-adiciona-nota {
     border:none;
     position: absolute;
-    margin-top: 40%;
+    margin-top: 35%;
     margin-left: 70%;
     cursor: pointer;
     color: #13121d;
