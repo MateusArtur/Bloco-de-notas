@@ -1,0 +1,121 @@
+body {
+    background: #13121d;
+    color: #fff;
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: "montserrat","sem serifa";
+}
+
+header {
+    float: left;
+}
+
+/* definição de largura por meio de modulos
+
+/* Titulo principal notes*/
+
+.nome-da-pagina h1, h4 {
+    padding: 15px 5px 5px 15px;
+    color: #454270;
+}
+
+.nome-da-pagina h1 {
+    font-size: 1.8em;
+    color: #5c5796;
+}
+/* cabeçalho lateral - guarda os titulos das pastas */
+.barra-lateral {
+    width: 22%;
+    background: #1c1b2b;
+    height: 100vh;
+    box-shadow: 5px 5px 10px black;
+}
+
+.titulos {
+    background: #13121d;
+    margin: 8px;
+    border-radius: 5px;
+    height: 83vh;
+}
+
+.titulos ul {
+    padding-top: 2px;
+}
+
+.titulos ul li {
+    background: #1c1b2b;
+    height: 45px;
+    border-radius: 2px;
+    list-style: none;
+    margin: 5px;
+    
+    padding: 5px;
+    font-size: 1.2em;
+    line-height: 35px;
+    align-items: center;
+
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+/* corpo das anotações*/
+
+.blocos-anotacoes {
+    padding: 5px;
+    position:absolute;
+    width: 75%;
+    margin-left: 22%;
+    box-sizing:border-box;
+}
+
+h2 {
+    padding: 0px 0px 15px 0px;
+}
+
+.anotacao {
+    float: left;
+    background: #242236;
+    border-radius: 5px;
+    margin: 5px;
+    padding: 20px;
+    width: 23.9%;
+    height: 35vh;
+    box-sizing:border-box;
+    cursor: pointer;
+}
+
+.visualizar-anotacao {
+    padding: 20px;
+    width: 100%;
+    height: 95vh;
+    border-radius: 5px;
+    background: #242236;
+    box-sizing:border-box;
+    transition: 0.5s;
+}
+
+/* botao adiciona nova anotacao */
+
+.botao-adiciona-nota {
+    border:none;
+    position: absolute;
+    margin-top: 40%;
+    margin-left: 70%;
+    cursor: pointer;
+    color: #13121d;
+    line-height: 22%;
+    font-size: 6em;
+    clear: both;
+    background: #444070;
+    border-radius: 50px;
+    width: 80px;
+    height: 80px;
+    box-shadow: 2px 2px 25px black;
+}
+
+.esconde-item {
+    display: none;
+}
