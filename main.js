@@ -1,11 +1,13 @@
 //variaveis
 const listaDeAnotacao = document.querySelectorAll(".anotacao")
+var contador = 0
 //Deixar o botão adicionar anotação clicavel
 function clicaNoBotao() {
     const botaoAdd = document.getElementById('botao-adiciona')
     botaoAdd.addEventListener("click", (evento) => {
         if(evento){
-            criaElementoNota()
+            contador += 1
+            criaElementoNota(contador)
             botaoAdd.classList.add("esconde-item")
             if(listaDeAnotacao != 0){
                 listaDeAnotacao.forEach( (elemento) => {
@@ -20,18 +22,25 @@ function clicaNoBotao() {
 
 /*Quando clicar no botao abrir um formulario com dois inputs, 
 um text e outro textarea e armazenar os valores dos iput em variavel*/
-function criaElementoNota(){
+//Criar um elemento Div com a class anotacao
+function criaElementoNota(contador){
+    
     const elementoPai = document.querySelector(".blocos-anotacoes")
     const elementoNovo = document.createElement('div')
     const elementoInputitulo = document.createElement('input')
     const elementoInputArea = document.createElement('textarea')
     const botaoSalvar = document.createElement('button')
 
+    elementoNovo.setAttribute("id", contador)
+
     elementoNovo.classList.add("visualizar-anotacao")
     elementoPai.appendChild(elementoNovo)
 
     elementoInputitulo.setAttribute('type', 'text')
+    elementoInputitulo.classList.add("titulo")
     elementoNovo.appendChild(elementoInputitulo)
+
+    elementoInputArea.classList.add("area-texto")
 
     elementoNovo.appendChild(elementoInputArea)
 
@@ -41,6 +50,7 @@ function criaElementoNota(){
     botaoSalvar.innerText = "Salvar"
     
     elementoNovo.appendChild(botaoSalvar)
+    console.log(contador)
 }
 
 
@@ -57,12 +67,32 @@ function salva(){
         elemento.classList.add("esconde-item")
         
     })
+    geradorDeAnotacaoFixa(contador)
+    removeElementos()
 }
 
-//Criar um elemento Div com a class anotacao
-
-
 //Inserir os valores capturados do input no h2 e paragrafo da anotação
+function geradorDeAnotacaoFixa (contador) {
+    let valorTituloAnotacao = document.querySelector(".titulo").value
+    let valorParagrafoAnotacao = document.querySelector("textarea").value
+    let id = document.getElementById(contador)
+    console.log(id)
+
+    let tituloDaAnotacao = document.createElement('h2')
+    tituloDaAnotacao.innerHTML=valorTituloAnotacao
+
+    let paragrafoDaAnotacao = document.createElement('p')
+    paragrafoDaAnotacao.innerHTML=valorParagrafoAnotacao
+    id.appendChild(tituloDaAnotacao)
+    id.appendChild(paragrafoDaAnotacao)    
+}
+
+function removeElementos() {
+    let anotacaoTitulo = document.querySelector(".titulo")
+    let anotacaoTexto = document.querySelector(".area-texto")
+    anotacaoTitulo.parentNode.removeChild(anotacaoTitulo)
+    anotacaoTexto.parentNode.removeChild(anotacaoTexto)
+}
 
 
 //Agora queremos fazer algo com a anotação]
