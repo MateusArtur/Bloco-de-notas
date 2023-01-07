@@ -11,4 +11,7 @@
 <h4>3º parte - Criar notas e salvar em campos estáticos(Título e parágrafo) - concluído</h4>
 <br>
 <br>
+<h4>4° parte - Requisições fetch para busca de dados das anotações - concluído</h4>
+<br>
+<br>
 <h4>Loading...</h4>
