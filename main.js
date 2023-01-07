@@ -1,6 +1,10 @@
+import { conectaAPI } from "./conectaAPI.js"
 //variaveis
 const listaDeAnotacao = document.querySelectorAll(".anotacao")
+const elementoPai = document.querySelector(".blocos-anotacoes")
 var contador = 0
+
+
 //Deixar o botão adicionar anotação clicavel
 function clicaNoBotao() {
     const botaoAdd = document.getElementById('botao-adiciona')
@@ -16,7 +20,7 @@ function clicaNoBotao() {
             }
             
         }
-        })         
+    })         
 }
 
 
@@ -24,74 +28,56 @@ function clicaNoBotao() {
 um text e outro textarea e armazenar os valores dos iput em variavel*/
 //Criar um elemento Div com a class anotacao
 function criaElementoNota(contador){
-    
-    const elementoPai = document.querySelector(".blocos-anotacoes")
-    const elementoNovo = document.createElement('div')
-    const elementoInputitulo = document.createElement('input')
-    const elementoInputArea = document.createElement('textarea')
-    const botaoSalvar = document.createElement('button')
-
-    elementoNovo.setAttribute("id", contador)
-
-    elementoNovo.classList.add("visualizar-anotacao")
-    elementoPai.appendChild(elementoNovo)
-
-    elementoInputitulo.setAttribute('type', 'text')
-    elementoInputitulo.classList.add("titulo")
-    elementoNovo.appendChild(elementoInputitulo)
-
-    elementoInputArea.classList.add("area-texto")
-
-    elementoNovo.appendChild(elementoInputArea)
-
-    botaoSalvar.classList.add("salvar")
-    botaoSalvar.setAttribute("onclick", "salva()")
-    botaoSalvar.setAttribute("data-salvar", " ")
-    botaoSalvar.innerText = "Salvar"
-    
-    elementoNovo.appendChild(botaoSalvar)
-    console.log(contador)
+    elementoPai.innerHTML += `
+    <div id="${contador}" class="visualizar-anotacao">
+        <input type="text" class="titulo"></input>
+        <textarea class="area-texto"></textarea>
+        <button class="salvar" id="salvar">Salvar</button>
+    </div>
+    `
+    salva()
 }
 
-
 function salva(){
+    const botaoSalvar = document.querySelectorAll("#salvar")
     const volta = document.querySelector(".visualizar-anotacao")
     const botaoAdd = document.getElementById('botao-adiciona')
 
-    volta.classList.add("anotacao")
-    volta.classList.remove("visualizar-anotacao")
-    botaoAdd.classList.remove("esconde-item")
-
-    const painelAnotacoes = document.querySelectorAll("[data-salvar]") 
-    painelAnotacoes.forEach( (elemento) => {
-        elemento.classList.add("esconde-item")
-        
-    })
-    geradorDeAnotacaoFixa(contador)
-    removeElementos()
+    for (let i = 0; i < botaoSalvar.length; i++) {
+        botaoSalvar[i].addEventListener("click", () => {
+            volta.classList.add("esconde-item")
+            direcionadorAnotacao(contador)
+            botaoAdd.classList.remove("esconde-item")
+        })  
+    }
 }
 
 //Inserir os valores capturados do input no h2 e paragrafo da anotação
-function geradorDeAnotacaoFixa (contador) {
-    let valorTituloAnotacao = document.querySelector(".titulo").value
-    let valorParagrafoAnotacao = document.querySelector("textarea").value
-    let id = document.getElementById(contador)
-    console.log(id)
-
-    let tituloDaAnotacao = document.createElement('h2')
-    tituloDaAnotacao.innerHTML=valorTituloAnotacao
-
-    let paragrafoDaAnotacao = document.createElement('p')
-    paragrafoDaAnotacao.innerHTML=valorParagrafoAnotacao
-    id.appendChild(tituloDaAnotacao)
-    id.appendChild(paragrafoDaAnotacao)    
+function direcionadorAnotacao(contador) {
+    var titulo = document.querySelector(".titulo").value
+    var corpo = document.querySelector("textarea").value
+    var id = document.getElementById(contador.value)
+    enviaAnotacao(id, titulo, corpo)
 }
 
-function removeElementos() {
-    let anotacaoTitulo = document.querySelector(".titulo")
-    let anotacaoTexto = document.querySelector(".area-texto")
-    anotacaoTitulo.parentNode.removeChild(anotacaoTitulo)
-    anotacaoTexto.parentNode.removeChild(anotacaoTexto)
+async function enviaAnotacao(id, titulo, corpo) {
+    await conectaAPI.criaAnotacao(id, titulo, corpo)
+}
+
+async function buscaDados() {
+    const anotacoesAPI = await conectaAPI.todasAnotacoes();
+    anotacoesAPI.forEach(elemento => {
+        const id = elemento.id
+        const titulo = elemento.titulo 
+        const corpo = elemento.corpo
+        
+        elementoPai.innerHTML += `
+            <div  id=${id} class="anotacao">
+                <h2>${titulo}</h2>
+                <p>${corpo}</p>
+            </div>
+            `
+    })
 }
 
 
@@ -99,6 +85,7 @@ function removeElementos() {
 
 /*Ao clicar na anotação teremos três opções, 
    - Visualizar
+   - Editar
    - Adicionar a uma pasta
    - Excluir 
 */
@@ -137,3 +124,4 @@ mesma lógica de adicionar ao array desejado*/
 
 //Chamando funções
 clicaNoBotao()
+buscaDados()
