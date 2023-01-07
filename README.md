@@ -8,4 +8,7 @@
 <h4>2º parte - Lógica do javaScript preparada - concluído</h4>
 <br>
 <br>
-<h4>Loading. . .</h4>
+<h4>3º parte - Criar notas e salvar em campos estáticos(Título e parágrafo) - concluído</h4>
+<br>
+<br>
+<h4>Loading...</h4>
