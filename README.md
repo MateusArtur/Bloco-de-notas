@@ -2,7 +2,7 @@
 
 # Bloco de notas
 
-<img src="bloco-de-notas" alt="interface da aplicação">
+<img src="bloco-de-notas">
 >Projeto de um bloco de notas criado como forma de treinar e desenvolver conforme aprendo novos conceitos, sua funcionalidade é adicionar anotacões do dia a dia, ajudando as pessoas com suas tarefas.
 
 ## Ajustes e melhorias
