@@ -1,8 +1,6 @@
-![bloco-de-notas](https://user-images.githubusercontent.com/108160291/211551055-8cbcfff8-5598-4c0c-8b3e-1bbb36c4026c.jpg)
-
 # Bloco de notas
 
-<img src="bloco-de-notas">
+![bloco-de-notas](https://user-images.githubusercontent.com/108160291/211551055-8cbcfff8-5598-4c0c-8b3e-1bbb36c4026c.jpg)
 >Projeto de um bloco de notas criado como forma de treinar e desenvolver conforme aprendo novos conceitos, sua funcionalidade é adicionar anotacões do dia a dia, ajudando as pessoas com suas tarefas.
 
 ## Ajustes e melhorias
